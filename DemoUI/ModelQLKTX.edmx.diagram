@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0db6389589014753b24f8db613a95c78" Name="Diagram1">
+        <EntityTypeShape EntityType="DEMOQLKTXModel.DOITUONGUUTIEN" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.HOADONDIENNUOC" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.HOCBONG" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.HOPDONG" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.NHANVIEN" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.PHIKTX" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.PHONG" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.SINHVIEN" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.sysdiagram" Width="1.5" PointX="7.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_SINHVIEN_DOITUONGUUTIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_HOADONDIENNUOC_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_HOADONDIENNUOC_PHONG" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_SINHVIEN_HOCBONG" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_HOPDONG_NHANVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_HOPDONG_PHONG" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_HOPDONG_SINHVIEN" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_PHIKTX_PHONG" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_PHIKTX_SINHVIEN" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.CheckIn" Width="1.5" PointX="0.5" PointY="6.5" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_CheckIn_SINHVIEN" />
+        <EntityTypeShape EntityType="DEMOQLKTXModel.User" Width="1.5" PointX="10.375" PointY="0.75" />
+        <AssociationConnector Association="DEMOQLKTXModel.FK_User_NHANVIEN" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

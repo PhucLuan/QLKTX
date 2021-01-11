@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.props')" />
+  <Import Project="..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.83.4.2\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.83.4.2\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.83.4.2\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.83.4.2\build\cef.redist.x64.props')" />
+  <Import Project="..\packages\EmguCV.3.1.0.1\build\EmguCV.props" Condition="Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{24F5DB1F-245F-46B0-8F16-0865D6BBCAE6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DemoUI</RootNamespace>
+    <AssemblyName>DemoUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\..\NHÓM\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
+    <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI.GL, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.UI.GL.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.World, Version=3.1.0.2282, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <HintPath>..\packages\EmguCV.3.1.0.1\lib\net30\Emgu.CV.World.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.6.0\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.13.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.UI2">
+      <HintPath>..\..\NHÓM\Guna.UI-Framework-Lib-master\Guna.UI2_WinFroms\.net 4.0\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.1.1.2225.0\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.GLControl.1.1.2225.0\lib\net20\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.Dapper.Plus, Version=3.0.17.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Dapper.Plus.3.0.17\lib\net45\Z.Dapper.Plus.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph, Version=5.1.5.28844, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZedGraph.5.1.5\lib\ZedGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net47\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\CalendarBLL.cs" />
+    <Compile Include="BLL\ConnectdbBLL.cs" />
+    <Compile Include="BLL\DtutBLL.cs" />
+    <Compile Include="BLL\HocbongBLL.cs" />
+    <Compile Include="BLL\HopdongBLL.cs" />
+    <Compile Include="BLL\NhanvienBLL.cs" />
+    <Compile Include="BLL\PhongBLL.cs" />
+    <Compile Include="DAL\GenericRepository.cs" />
+    <Compile Include="DAL\GenericUnitOfWork.cs" />
+    <Compile Include="DAL\IRepository.cs" />
+    <Compile Include="CheckIn.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEMOQLKTXDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DEMOQLKTXDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DOITUONGUUTIEN.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FaceID\FormFaceRe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FaceID\FormFaceRe.designer.cs">
+      <DependentUpon>FormFaceRe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormCalendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormCalendar.Designer.cs">
+      <DependentUpon>FormCalendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormConnectDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormConnectDB.Designer.cs">
+      <DependentUpon>FormConnectDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormCreateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormCreateUser.Designer.cs">
+      <DependentUpon>FormCreateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormDashBoard.Designer.cs">
+      <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormHocBong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormHocBong.designer.cs">
+      <DependentUpon>FormHocBong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormHopDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormHopDong.Designer.cs">
+      <DependentUpon>FormHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormInfoSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormInfoSV.designer.cs">
+      <DependentUpon>FormInfoSV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormNV_Buni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormNV_Buni.designer.cs">
+      <DependentUpon>FormNV_Buni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormProfile.Designer.cs">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormScan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormScan.designer.cs">
+      <DependentUpon>FormScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\MyDb.cs" />
+    <Compile Include="GUI\ThongKe\FormThongKe_Phong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ThongKe\FormThongKe_Phong.designer.cs">
+      <DependentUpon>FormThongKe_Phong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ThongKe\FormThongKe_PhiKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ThongKe\FormThongKe_PhiKTX.designer.cs">
+      <DependentUpon>FormThongKe_PhiKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ThongKe\FormThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ThongKe\FormThongKe.designer.cs">
+      <DependentUpon>FormThongKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ThongKe\FormThongKe_HDDienNuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\HistoryCheckIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\HistoryCheckIn.Designer.cs">
+      <DependentUpon>HistoryCheckIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HOADONDIENNUOC.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormHoaDonDienNuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormHoaDonDienNuoc.designer.cs">
+      <DependentUpon>FormHoaDonDienNuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormPhiKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormPhiKTX.designer.cs">
+      <DependentUpon>FormPhiKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormPrint_HoaDonDienNuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormPrint_HoaDonDienNuoc.designer.cs">
+      <DependentUpon>FormPrint_HoaDonDienNuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormPrint_PhiKTX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\HoaDon\FormPrint_PhiKTX.designer.cs">
+      <DependentUpon>FormPrint_PhiKTX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HOCBONG.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HOPDONG.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormDTUT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormDTUT.designer.cs">
+      <DependentUpon>FormDTUT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormPhong.designer.cs">
+      <DependentUpon>FormPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelQLKTX.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelQLKTX.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelQLKTX.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelQLKTX.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelQLKTX.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="NHANVIEN.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PHIKTX.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PHONG.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SINHVIEN.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BLL\SqlHelper.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>ModelQLKTX.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.cs" />
+    <EmbeddedResource Include="GUI\FaceID\FormFaceRe.resx">
+      <DependentUpon>FormFaceRe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormCalendar.resx">
+      <DependentUpon>FormCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormConnectDB.resx">
+      <DependentUpon>FormConnectDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormCreateUser.resx">
+      <DependentUpon>FormCreateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormDashBoard.resx">
+      <DependentUpon>FormDashBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormHocBong.resx">
+      <DependentUpon>FormHocBong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormHopDong.resx">
+      <DependentUpon>FormHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormInfoSV.resx">
+      <DependentUpon>FormInfoSV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormNV_Buni.resx">
+      <DependentUpon>FormNV_Buni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormProfile.resx">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormScan.resx">
+      <DependentUpon>FormScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormDTUT.resx">
+      <DependentUpon>FormDTUT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormPhong.resx">
+      <DependentUpon>FormPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ThongKe\FormThongKe_Phong.resx">
+      <DependentUpon>FormThongKe_Phong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ThongKe\FormThongKe_PhiKTX.resx">
+      <DependentUpon>FormThongKe_PhiKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ThongKe\FormThongKe.resx">
+      <DependentUpon>FormThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ThongKe\FormThongKe_HDDienNuoc.resx">
+      <DependentUpon>FormThongKe_HDDienNuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HistoryCheckIn.resx">
+      <DependentUpon>HistoryCheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\FormHoaDonDienNuoc.resx">
+      <DependentUpon>FormHoaDonDienNuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\FormPhiKTX.resx">
+      <DependentUpon>FormPhiKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\FormPrint_HoaDonDienNuoc.resx">
+      <DependentUpon>FormPrint_HoaDonDienNuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\FormPrint_PhiKTX.resx">
+      <DependentUpon>FormPrint_PhiKTX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\HoaDon\HoaDonDienNuoc.rdlc" />
+    <EmbeddedResource Include="GUI\HoaDon\PhiKTX.rdlc" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="ModelQLKTX.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelQLKTX.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DEMOQLKTXDataSet1.xsc">
+      <DependentUpon>DEMOQLKTXDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DEMOQLKTXDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DEMOQLKTXDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DEMOQLKTXDataSet1.xss">
+      <DependentUpon>DEMOQLKTXDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ModelQLKTX.edmx.diagram">
+      <DependentUpon>ModelQLKTX.edmx</DependentUpon>
+    </None>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GUI\FaceID\haarcascade_frontalface_alt.xml" />
+    <Content Include="ModelQLKTX.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelQLKTX.Context.cs</LastGenOutput>
+      <DependentUpon>ModelQLKTX.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModelQLKTX.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelQLKTX.edmx</DependentUpon>
+      <LastGenOutput>ModelQLKTX.cs</LastGenOutput>
+    </Content>
+    <Content Include="Resources\1021.png" />
+    <Content Include="Resources\1442.jpg" />
+    <Content Include="Resources\2445.jpg" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EmguCV.3.1.0.1\build\EmguCV.props'))" />
+    <Error Condition="!Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EmguCV.3.1.0.1\build\EmguCV.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.83.4.2\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.83.4.2\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.83.4.2\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.83.4.2\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.targets'))" />
+  </Target>
+  <Import Project="..\packages\EmguCV.3.1.0.1\build\EmguCV.targets" Condition="Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.targets')" />
+  <Import Project="..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.83.4.20\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.83.4.20\build\CefSharp.WinForms.targets')" />
+</Project>
